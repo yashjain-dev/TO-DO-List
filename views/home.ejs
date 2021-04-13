@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>
+            <%= locals.title %>
+        </title>
+
+        <!-- Online Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        
+        <!-- Online Font Awesome Link -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body>
+        
+        <div class="row row-padding-50">
+            <h1 class="heading">
+                <i class="fas fa-address-book"></i>
+                My Contact List
+            </h1>
+        </div>
+        
+        <div class="row row-padding-50">
+            
+
+            <!-- Create Contact Form -->
+            <div class="col-sm-4 text-center">
+                <div class="form-ext-wrap">
+                    <div>
+                        <h2 class="heading text-center">Add Contact</h2>
+                    </div>
+                    <form action="/create-contact" method="POST">
+                        <input class="form-control" type="text" name="name" placeholder="Enter Name" required>
+                        <input class="form-control" type="number" name="phone" placeholder="Enter Phone" required>
+
+                        <button class="form-control" type="submit">Add Contact</button>
+                    </form>
+                </div>
+            </div>
+            <!-- End of Create Contact Form -->
+            
+            <!-- Display of contact list -->
+            <div id="contact-list" class="col-sm-4 text-center">
+                <ul>
+                    <% for (let i of contact_list) { %>
+                        <li class="li-contact">
+                            <div class="contact-detail">
+                                <div class="name-logo">
+                                    <i class="fas fa-user"></i>
+                                    <p><%= i.name %></p>
+                                </div>
+                                <div class="number">
+                                    <i class="fas fa-phone"></i>
+                                    <p><%= i.phone %></p>
+                                </div>
+                            </div>
+                            <div class="delete-button">
+                                <a href="/delete-contact/?phone=<%= i.phone %>">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </div>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+            <!-- End of Contact Display -->
+
+
+            
+
+
+        </div>
+
+        
+
+        <script type="text/javascript" src="/js/home.js"></script>
+    </body>
+</html>
